@@ -15,13 +15,19 @@
     </div>
 </template>
 
-<script lang="ts">
-import Job from '@/types/Job'
-import OrderTerm from '@/types/OrderTerm'
-import { computed, defineComponent, PropType, WritableComputedRef } from 'vue'
+<script setup lang="ts">
+    import Job from '@/types/Job'
+    import OrderTerm from '@/types/OrderTerm'
+    import { computed, PropType } from 'vue'
 
-export default defineComponent({
-    props: {
+    // interface Props {
+    //     jobs: Job[],
+    //     order: OrderTerm
+    // }
+
+    // defineProps<Props>();
+
+    const props = defineProps({
         jobs: {
             required: true,
             type: Array as PropType<Job[]>
@@ -30,20 +36,14 @@ export default defineComponent({
             required: true,
             type: String as PropType<OrderTerm>
         }
-    },
+    });
 
-    setup(props){
-        const orderedJobs = computed(() => {
-            return [...props.jobs].sort((a: Job, b: Job) => {
-                return a[props.order] > b[props.order] ? 1 : -1
-            })
-        });
-
-        return {
-            orderedJobs
-        }
-    }
-})
+    const orderedJobs = computed(() => {
+        return [...props.jobs].sort((a: Job, b: Job) => {
+            return a[props.order] > b[props.order] ? 1 : -1
+        })
+    });
+    
 </script>
 
 

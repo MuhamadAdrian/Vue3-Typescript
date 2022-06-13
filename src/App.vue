@@ -11,26 +11,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue';
-import JobList from './components/JobList.vue';
-import Job from './types/Job';
-import OrderTerm from './types/OrderTerm';
-export default defineComponent({
-  name: 'App',
-  components: {
-    JobList
-  },
-
-  setup(){
-    // const state = reactive<object>({
-    //   name: 'Link',
-    //   age: 25 as string | number
-    // });
-
-    // return {
-    //   ...toRefs(state)
-    // }
+<script setup lang="ts">
+  import { ref } from 'vue';
+  import JobList from './components/JobList.vue';
+  import Job from './types/Job';
+  import OrderTerm from './types/OrderTerm';
 
     const jobs = ref<Job[]>([
       { title: 'farm worker', location: 'lon lon ranch', salary: 30000, id: '1' },
@@ -47,12 +32,6 @@ export default defineComponent({
 
       console.log(order.value);
     }
-
-    return {
-      jobs, order, handleClick
-    }
-  }
-});
 </script>
 
 <style scoped>
